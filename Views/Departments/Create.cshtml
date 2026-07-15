@@ -1,0 +1,30 @@
+@model MediCorePatientFlow.Models.Department
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Department Setup</p>
+        <h1 class="page-title">Create Department</h1>
+        <p class="page-subtitle">Add a clinical unit with a short description for faster admission routing.</p>
+    </div>
+</section>
+
+<section class="content-card">
+    <h2 class="section-title mb-3">Department Details</h2>
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Name</label>
+            <input class="form-control" asp-for="Name" />
+        </div>
+        <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea class="form-control" rows="5" asp-for="Description"></textarea>
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary px-4" type="submit">Create Department</button>
+            <a class="btn btn-secondary px-4" href="/Departments">Cancel</a>
+        </div>
+    </form>
+</section>

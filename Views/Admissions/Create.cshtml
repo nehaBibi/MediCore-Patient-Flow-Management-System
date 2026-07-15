@@ -1,0 +1,53 @@
+@model MediCorePatientFlow.Models.Admission
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Admission Desk</p>
+        <h1 class="page-title">New Admission</h1>
+        <p class="page-subtitle">Assign the patient, doctor, ward, and available bed in one guided entry.</p>
+    </div>
+</section>
+
+<section class="content-card">
+    <h2 class="section-title mb-3">Admission Details</h2>
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">Patient</label>
+            <select class="form-select" asp-for="PatientID">
+                @foreach(var p in (IEnumerable<MediCorePatientFlow.Models.Patient>)ViewBag.Patients)
+                {
+                    <option value="@p.PatientID">@p.FirstName @p.LastName</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Doctor</label>
+            <select class="form-select" asp-for="DoctorID">
+                @foreach(var d in (IEnumerable<MediCorePatientFlow.Models.Doctor>)ViewBag.Doctors)
+                {
+                    <option value="@d.DoctorID">@d.FirstName @d.LastName</option>
+                }
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Ward</label>
+            <select class="form-select" asp-for="WardName">
+                <option>General</option>
+                <option>ICU</option>
+                <option>Maternity</option>
+                <option>Pediatric</option>
+            </select>
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Bed Number (optional)</label>
+            <input class="form-control" asp-for="BedNumber" />
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary px-4" type="submit">Admit Patient</button>
+            <a class="btn btn-secondary px-4" href="/Admissions">Cancel</a>
+        </div>
+    </form>
+</section>

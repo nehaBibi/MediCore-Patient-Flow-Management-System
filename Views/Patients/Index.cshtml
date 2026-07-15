@@ -1,0 +1,45 @@
+@model IEnumerable<MediCorePatientFlow.Models.Patient>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Patient Registry</p>
+        <h1 class="page-title">Patients</h1>
+        <p class="page-subtitle">View registered patients and keep demographic records ready for admission decisions.</p>
+    </div>
+    <a class="btn btn-light fw-bold" href="/Patients/Create">Create New</a>
+</section>
+
+<section class="content-card">
+    <div class="toolbar">
+        <h2 class="section-title">Registered Patients</h2>
+        <span class="badge-soft">@Model.Count() records</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>DOB</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            @foreach(var p in Model)
+            {
+                <tr>
+                    <td><span class="badge-soft">#@p.PatientID</span></td>
+                    <td class="fw-semibold">@p.FirstName @p.LastName</td>
+                    <td>@p.DateOfBirth.ToShortDateString()</td>
+                    <td>
+                        <a class="btn btn-sm btn-secondary" href="/Patients/Edit/@p.PatientID">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="/Patients/Delete/@p.PatientID">Delete</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if(!Model.Any())
+    {
+        <div class="empty-state">No patient records yet.</div>
+    }
+</section>

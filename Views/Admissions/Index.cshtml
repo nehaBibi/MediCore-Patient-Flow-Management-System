@@ -1,0 +1,50 @@
+@model IEnumerable<MediCorePatientFlow.Models.Admission>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Bed Movement</p>
+        <h1 class="page-title">Admissions</h1>
+        <p class="page-subtitle">Monitor active stays, assigned doctors, wards, beds, and discharge readiness.</p>
+    </div>
+    <a class="btn btn-light fw-bold" href="/Admissions/Create">New Admission</a>
+</section>
+
+<section class="content-card">
+    <div class="toolbar">
+        <h2 class="section-title">Current Admissions</h2>
+        <span class="badge-soft">@Model.Count() records</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr><th>ID</th><th>Patient</th><th>Doctor</th><th>Ward</th><th>Bed</th><th>Status</th><th>Actions</th></tr>
+            </thead>
+            <tbody>
+            @foreach(var a in Model)
+            {
+                <tr>
+                    <td><span class="badge-soft">#@a.AdmissionID</span></td>
+                    <td class="fw-semibold">@a.Patient?.FirstName @a.Patient?.LastName</td>
+                    <td>@a.Doctor?.FirstName @a.Doctor?.LastName</td>
+                    <td>@a.WardName</td>
+                    <td>@(string.IsNullOrWhiteSpace(a.BedNumber) ? "Pending" : a.BedNumber)</td>
+                    <td><span class="badge-soft">@a.AdmissionStatus</span></td>
+                    <td>
+                        @if(a.AdmissionStatus != "Discharged")
+                        {
+                            <a class="btn btn-sm btn-success" href="/Admissions/Discharge/@a.AdmissionID">Discharge</a>
+                        }
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if(!Model.Any())
+    {
+        <div class="empty-state">No admission records yet.</div>
+    }
+</section>

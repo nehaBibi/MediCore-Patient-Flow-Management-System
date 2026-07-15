@@ -1,0 +1,34 @@
+@model MediCorePatientFlow.Models.Patient
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">New Registration</p>
+        <h1 class="page-title">Create Patient</h1>
+        <p class="page-subtitle">Capture the essentials first, then use the registry for admissions and ward placement.</p>
+    </div>
+</section>
+
+<section class="content-card">
+    <h2 class="section-title mb-3">Patient Details</h2>
+    <form method="post" class="row g-3">
+        <div class="col-md-6">
+            <label class="form-label">First Name</label>
+            <input class="form-control" asp-for="FirstName" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Last Name</label>
+            <input class="form-control" asp-for="LastName" />
+        </div>
+        <div class="col-md-6">
+            <label class="form-label">Date of Birth</label>
+            <input type="date" class="form-control" asp-for="DateOfBirth" />
+        </div>
+        <div class="col-12">
+            <button class="btn btn-primary px-4" type="submit">Create Patient</button>
+            <a class="btn btn-secondary px-4" href="/Patients">Cancel</a>
+        </div>
+    </form>
+</section>

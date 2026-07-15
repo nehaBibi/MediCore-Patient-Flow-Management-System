@@ -1,0 +1,11 @@
+# Build output and restored dependencies
+bin/
+obj/
+.nuget/
+
+# SQLite runtime sidecar files
+*.db-shm
+*.db-wal
+
+# Generated workspace listings
+map.txt

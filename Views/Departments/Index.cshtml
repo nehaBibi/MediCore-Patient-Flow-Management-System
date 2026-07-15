@@ -1,0 +1,41 @@
+@model IEnumerable<MediCorePatientFlow.Models.Department>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Clinical Units</p>
+        <h1 class="page-title">Departments</h1>
+        <p class="page-subtitle">Organize specialist units so patients can move through the hospital with clarity.</p>
+    </div>
+    <a class="btn btn-light fw-bold" href="/Departments/Create">New Department</a>
+</section>
+
+<section class="content-card">
+    <div class="toolbar">
+        <h2 class="section-title">Department Directory</h2>
+        <span class="badge-soft">@Model.Count() records</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr><th>ID</th><th>Name</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+            @foreach(var d in Model)
+            {
+                <tr>
+                    <td><span class="badge-soft">#@d.DepartmentID</span></td>
+                    <td class="fw-semibold">@d.Name</td>
+                    <td>@d.Description</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    @if(!Model.Any())
+    {
+        <div class="empty-state">No departments have been added yet.</div>
+    }
+</section>

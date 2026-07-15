@@ -1,0 +1,48 @@
+@model dynamic
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="page-hero">
+    <div>
+        <p class="eyebrow">Live Hospital Overview</p>
+        <h1 class="page-title">PatientFlow Dashboard</h1>
+        <p class="page-subtitle">A focused command center for patient registrations, admissions, wards, and care coordination.</p>
+    </div>
+    <span class="badge-soft">GCN @Model.Gcn</span>
+</section>
+
+<section class="metric-grid" aria-label="Hospital metrics">
+    <article class="metric-card">
+        <p class="metric-label">Total Patients</p>
+        <p class="metric-value">@Model.TotalPatients</p>
+    </article>
+    <article class="metric-card">
+        <p class="metric-label">Total Admissions</p>
+        <p class="metric-value">@Model.TotalAdmissions</p>
+    </article>
+    <article class="metric-card">
+        <p class="metric-label">Care Network</p>
+        <p class="metric-value">@Model.Gcn</p>
+    </article>
+</section>
+
+<section class="content-card">
+    <div class="toolbar">
+        <div>
+            <p class="eyebrow text-primary mb-1">Quick Actions</p>
+            <h2 class="section-title">Manage Today’s Flow</h2>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <a class="btn btn-primary w-100 py-3" href="/Admissions/Create">Admit Patient</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-secondary w-100 py-3" href="/Patients/Create">Register Patient</a>
+        </div>
+        <div class="col-md-4">
+            <a class="btn btn-secondary w-100 py-3" href="/Departments/Create">Add Department</a>
+        </div>
+    </div>
+</section>
